@@ -8,27 +8,30 @@
     <meta name="viewport" content="initial-scale=1.0"/>
     <link rel="stylesheet" href="css/style.css"/>
     <script type="text/javascript" src="js/canvas.js"></script>
-    <div class="header">
+    <div class="header big_font ">
         <div>
-            <h1 class="page_title">Solar tilt</h1>
+            <div>
+                <img src="img/logo.png">
+                <h1>Solar tilt</h1>
+            </div>
             <p class="small_font">This is a quick html page that allows you to tilt your solar panels to the perfect
                 angle for best energy production</p>
         </div>
     </div>
 </head>
 
-<body onload="draw()">
+<body onload="calculateAngleB()">
 <div id="div_main">
     <canvas id="canvas" width="530" height="350"></canvas>
     <div id="div_input">
         <label id="location_title" class="big_font">Please enter your location:</label>
         <div class="div_lat_long">
             <label class="small_font" id="lbl_lat">Current Latitude: </label>
-            <input type="text" class="small_font" id="txt_lat">
+            <input type="text" class="small_font" id="txt_lat" value="34.4346">
         </div>
         <div class="div_lat_long">
             <label class="small_font" id="lbl_long">Current Longitude: </label>
-            <input type="text" class="small_font" id="txt_long">
+            <input type="text" class="small_font" id="txt_long" value="35.8362">
         </div>
         <div id="div_choose_location">
             <a href="#" id="location_button" onclick="openGoogleMaps()" class="nicebutton small_font">Choose
@@ -36,7 +39,7 @@
         </div>
 
         <div id="div_calculate_button">
-            <a href="#" id="calculate" onclick="calculateAngle()" class="nicebutton small_font">Calculate</a>
+            <a href="#" id="calculate" onclick="calculateAngleB()" class="nicebutton small_font">Calculate</a>
         </div>
     </div>
 

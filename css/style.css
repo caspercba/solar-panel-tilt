@@ -4,6 +4,21 @@
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    margin-left: 40px;
+    margin-bottom: 60px;
+}
+
+.header img {
+    float: left;
+    width: 130px;
+    height: 100px;
+    background: #555;
+}
+
+.header h1 {
+    position: relative;
+    top: 18px;
+    left: 10px;
 }
 
 .small_font {
@@ -92,6 +107,7 @@
 }
 
 #location_title {
+    margin-left: 20px;
     margin-top: 40px;
     margin-bottom: 10px;
 }

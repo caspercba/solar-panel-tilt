@@ -1,13 +1,7 @@
 /**
- * Dummy overload so we show something at webpage load, initially angle is 0
- */
-function draw() {
-    draw(0, 0);
-}
-
-/**
  * Called once we have calculated the desired angle (summer/winter average)
- * @param angle
+ * @param summerAngle
+ * @param winterAngle
  */
 function draw(summerAngle, winterAngle) {
     const canvas = document.getElementById("canvas");
@@ -44,7 +38,8 @@ function drawPanel(ctx, targetAngle, posX, posY, size) {
         ctx.closePath();
         ctx.font = "30px Arial";
         ctx.fillStyle = "black"
-        ctx.fillText(Math.round(currentAngle), posX, posY + 30);
+        let text = "Avg Angle: " + Math.round(currentAngle)
+        ctx.fillText(text, posX, posY + 30);
         if (currentAngle < targetAngle) currentAngle += deltaAngle;
         else clearInterval(interval);
     }, 1000 / 80);
@@ -95,7 +90,8 @@ function fillAngleLabels(summerAngle, winterAngle) {
  * Open google maps location chooser
  */
 function openGoogleMaps() {
-    var childWin = window.open("./google-maps-chooser.html", "_blank", "height=800, width=1000, status=yes, toolbar=no, menubar=no, location=no,addressbar=no");
+    fillAngleLabels(0, 0);
+    window.open("./google-maps-chooser.html", "_blank", "height=800, width=1000, status=yes, toolbar=no, menubar=no, location=no,addressbar=no");
 }
 
 /**
@@ -121,12 +117,29 @@ function calculateAngle() {
         // let winterAngle = (Math.abs(lat) * 0.9) + 29;
         let summerAngle = Math.abs(lat) - 15;
         let winterAngle = Math.abs(lat) + 15;
-        let average = (summerAngle + winterAngle) / 2;
         draw(summerAngle, winterAngle);
         console.log("summer: " + summerAngle + " , winter: " + winterAngle);
     } else {
         // no valid lat/long
         console.log("Please enter valid lat + long values")
     }
+}
 
+/**
+ * Alternative Formulae
+ */
+function calculateAngleB() {
+    const lat = document.getElementById("txt_lat").value;
+    const long = document.getElementById("txt_long").value;
+    if (lat.length > 0 && long.length > 0) {
+        // let summerAngle = (Math.abs(lat) * 0.9) - 23.5;
+        // let winterAngle = (Math.abs(lat) * 0.9) + 29;
+        let summerAngle = Math.abs(lat) * 0.9 - 23.5;
+        let winterAngle = Math.abs(lat) * 0.9 + 29;
+        draw(summerAngle, winterAngle);
+        console.log("summer: " + summerAngle + " , winter: " + winterAngle);
+    } else {
+        // no valid lat/long
+        console.log("Please enter valid lat + long values")
+    }
 }
