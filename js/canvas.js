@@ -11,7 +11,7 @@ function draw() {
  */
 function draw(summerAngle, winterAngle) {
     const canvas = document.getElementById("canvas");
-    if (null==canvas || !canvas.getContext) return;
+    if (null == canvas || !canvas.getContext) return;
     const ctx = canvas.getContext("2d")
 
     fillAngleLabels(summerAngle, winterAngle)
@@ -45,9 +45,9 @@ function drawPanel(ctx, targetAngle, posX, posY, size) {
         ctx.font = "30px Arial";
         ctx.fillStyle = "black"
         ctx.fillText(Math.round(currentAngle), posX, posY + 30);
-        if(currentAngle < targetAngle) currentAngle += deltaAngle;
+        if (currentAngle < targetAngle) currentAngle += deltaAngle;
         else clearInterval(interval);
-    }, 1000/ 80);
+    }, 1000 / 80);
 
 }
 
@@ -66,7 +66,7 @@ function drawSun(context, centerX, centerY) {
     const deltaY = (radius + centerY) / 100
 
     const interval = setInterval(function () {
-        context.clearRect(0,0,centerX + radius,centerY + radius);
+        context.clearRect(0, 0, centerX + radius, centerY + radius);
         context.beginPath();
         context.arc(currentX, currentY, radius, 0, 2 * Math.PI, false);
         context.fillStyle = 'yellow';
@@ -74,10 +74,10 @@ function drawSun(context, centerX, centerY) {
         context.stroke();
         context.closePath();
 
-        if(currentX < centerX) currentX += deltaX;
-        if(currentY < centerY) currentY += deltaY;
+        if (currentX < centerX) currentX += deltaX;
+        if (currentY < centerY) currentY += deltaY;
 
-        if(currentX >= centerX && currentY >= centerY) clearInterval(interval)
+        if (currentX >= centerX && currentY >= centerY) clearInterval(interval)
 
     }, 1000 / 100)
 }
@@ -94,8 +94,7 @@ function fillAngleLabels(summerAngle, winterAngle) {
 /**
  * Open google maps location chooser
  */
-function openGoogleMaps()
-{
+function openGoogleMaps() {
     var childWin = window.open("./google-maps-chooser.html", "_blank", "height=800, width=1000, status=yes, toolbar=no, menubar=no, location=no,addressbar=no");
 }
 
@@ -117,7 +116,7 @@ function setGoogleMapsResult(lat, long) {
 function calculateAngle() {
     const lat = document.getElementById("txt_lat").value;
     const long = document.getElementById("txt_long").value;
-    if(lat.length > 0 && long.length > 0) {
+    if (lat.length > 0 && long.length > 0) {
         // let summerAngle = (Math.abs(lat) * 0.9) - 23.5;
         // let winterAngle = (Math.abs(lat) * 0.9) + 29;
         let summerAngle = Math.abs(lat) - 15;
