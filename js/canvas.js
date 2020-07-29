@@ -1,31 +1,40 @@
-function fun1(x) {return Math.sin(x);  }
-function fun2(x) {return Math.cos(3*x);}
-
+/**
+ * Dummy overload so we show something at webpage load, initially angle is 0
+ */
 function draw() {
-    draw(0);
+    draw(0, 0);
 }
 
-function draw(angle) {
+/**
+ * Called once we have calculated the desired angle (summer/winter average)
+ * @param angle
+ */
+function draw(summerAngle, winterAngle) {
     const canvas = document.getElementById("canvas");
     if (null==canvas || !canvas.getContext) return;
+    const ctx = canvas.getContext("2d")
 
-    const axes = {}, ctx = canvas.getContext("2d");
-    axes.x0 = .5 + .5*canvas.width;  // x0 pixels from left to x=0
-    axes.y0 = .5 + .5*canvas.height; // y0 pixels from top to y=0
-    axes.scale = 40;                 // 40 pixels from x=0 to x=1
-    axes.doNegativeX = true;
-
-
+    fillAngleLabels(summerAngle, winterAngle)
     drawSun(ctx, canvas.width / 5, canvas.height / 4);
-    drawPanel(ctx, angle, 300, 300, 200);
+    drawPanel(ctx, (summerAngle + winterAngle) / 2, 300, 300, 200);
 }
 
+/**
+ * Draw solar panel at locaiton posX, posY and targetAngle inclination
+ * @param ctx
+ * @param targetAngle
+ * @param posX
+ * @param posY
+ * @param size length of panel
+ */
 function drawPanel(ctx, targetAngle, posX, posY, size) {
 
     let currentAngle = 0;
     let deltaAngle = targetAngle / 100;
 
     const interval = setInterval(function () {
+        let margin = 50;
+        ctx.clearRect(posX - margin, posY - size, size + margin, size + margin);
         ctx.beginPath();
         ctx.strokeStyle = "black";
         ctx.moveTo(posX, posY);
@@ -33,12 +42,21 @@ function drawPanel(ctx, targetAngle, posX, posY, size) {
         ctx.stroke();
         ctx.fill();
         ctx.closePath();
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "black"
+        ctx.fillText(Math.round(currentAngle), posX, posY + 30);
         if(currentAngle < targetAngle) currentAngle += deltaAngle;
         else clearInterval(interval);
     }, 1000/ 80);
 
 }
 
+/**
+ * Draw the sun animated to centerX, centerY final position
+ * @param context
+ * @param centerX
+ * @param centerY
+ */
 function drawSun(context, centerX, centerY) {
 
     const radius = 70;
@@ -61,14 +79,31 @@ function drawSun(context, centerX, centerY) {
 
         if(currentX >= centerX && currentY >= centerY) clearInterval(interval)
 
-    }, 1000 / 30)
+    }, 1000 / 100)
 }
 
+function fillAngleLabels(summerAngle, winterAngle) {
+    const winter_angle = document.getElementById("winter_angle_value");
+    const summer_angle = document.getElementById("summer_angle_value");
+    const avg_angle = document.getElementById("avg_angle_value");
+    winter_angle.value = winterAngle;
+    summer_angle.value = summerAngle;
+    avg_angle.value = (winterAngle + summerAngle) / 2;
+}
+
+/**
+ * Open google maps location chooser
+ */
 function openGoogleMaps()
 {
     var childWin = window.open("./google-maps-chooser.html", "_blank", "height=800, width=1000, status=yes, toolbar=no, menubar=no, location=no,addressbar=no");
 }
 
+/**
+ * Callback from the maps html page, here we receive the resulting location
+ * @param lat
+ * @param long
+ */
 function setGoogleMapsResult(lat, long) {
     const txt_lat = document.getElementById("txt_lat");
     const txt_long = document.getElementById("txt_long");
@@ -76,6 +111,9 @@ function setGoogleMapsResult(lat, long) {
     txt_long.value = long;
 }
 
+/**
+ * Take params (lat long) and calculate the right tilt angle and draw animation
+ */
 function calculateAngle() {
     const lat = document.getElementById("txt_lat").value;
     const long = document.getElementById("txt_long").value;
@@ -85,39 +123,11 @@ function calculateAngle() {
         let summerAngle = Math.abs(lat) - 15;
         let winterAngle = Math.abs(lat) + 15;
         let average = (summerAngle + winterAngle) / 2;
-        draw(average);
+        draw(summerAngle, winterAngle);
         console.log("summer: " + summerAngle + " , winter: " + winterAngle);
     } else {
         // no valid lat/long
         console.log("Please enter valid lat + long values")
     }
 
-}
-
-
-function funGraph (ctx,axes,func,color,thick) {
-    let xx, yy, dx = 4, x0 = axes.x0, y0 = axes.y0, scale = axes.scale;
-    const iMax = Math.round((ctx.canvas.width - x0) / dx);
-    const iMin = axes.doNegativeX ? Math.round(-x0 / dx) : 0;
-    ctx.beginPath();
-    ctx.lineWidth = thick;
-    ctx.strokeStyle = color;
-
-    for (let i=iMin; i<=iMax; i++) {
-        xx = dx*i; yy = scale*func(xx/scale);
-        if (i===iMin) ctx.moveTo(x0+xx,y0-yy);
-        else         ctx.lineTo(x0+xx,y0-yy);
-    }
-    ctx.stroke();
-}
-
-function showAxes(ctx,axes) {
-    const x0 = axes.x0, w = ctx.canvas.width;
-    const y0 = axes.y0, h = ctx.canvas.height;
-    const xmin = axes.doNegativeX ? 0 : x0;
-    ctx.beginPath();
-    ctx.strokeStyle = "rgb(128,128,128)";
-    ctx.moveTo(xmin,y0); ctx.lineTo(w,y0);  // X axis
-    ctx.moveTo(x0,0);    ctx.lineTo(x0,h);  // Y axis
-    ctx.stroke();
 }

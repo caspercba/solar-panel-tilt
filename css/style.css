@@ -42,32 +42,55 @@
     background: #e9e9e9 linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
 }
 .nicebutton:active {
-    position:relative;
-    top:1px;
+    /*position:relative;*/
+    /*top:1px;*/
 }
 
-.flex {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: 100px 100px 100px;
-}
-
-.container {
-    width: fit-content;
+.result_main {
+    box-shadow:inset 0 1px 0 0 #ffffff;
     border: 1px solid #dcdcdc;
-    border-radius: .5em;
-    padding: 10px;
-    justify-content: space-between;
-    align-content: space-between;
+    width: 400px;
+    margin-left: 30px;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
-.result_stuff {
-    position: absolute;
-    left: 20px;
+.result {
+    margin: 20px;
+}
+
+.div_lat_long {
+    margin: 20px;
+}
+
+.angle_lbl {
+    min-width: 300px;
+    display: inline-block;
+}
+
+#lbl_lat {
+    min-width: 150px;
+    display:inline-block
+}
+
+#lbl_long {
+    min-width: 150px;
+    display:inline-block
+}
+
+#div_input {
+    width: 500px;
+    margin: 20px;
+}
+
+#div_choose_location, #div_calculate_button {
+    float: left;
+    margin: 20px;
+}
+
+#location_title {
+    margin-top: 40px;
+    margin-bottom: 10px;
 }
 
 #map {
@@ -76,20 +99,15 @@
 }
 
 #canvas {
+    display: inline-block;
     overflow: auto;
-    border-radius:6px;
-    border:1px solid #dcdcdc;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
     margin-left: 50px;
+    float: right;
 }
 
-#location_button {
-    margin-top: 10px;
+#div_main {
+    width: 1000px;
 }
-
-#location_data {
-    position: relative;
-    bottom: 0;
-    left: 0;
-}
-
 

@@ -18,6 +18,10 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/index.html" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\LENOVO\WebstormProjects\untitled1\css" />
+      <recent name="C:\Users\LENOVO\WebstormProjects\untitled1\js" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\LENOVO\WebstormProjects\untitled1" />
     </key>
@@ -40,7 +44,7 @@
       <updated>1595894824147</updated>
       <workItem from="1595894825262" duration="1167000" />
       <workItem from="1595967820681" duration="9994000" />
-      <workItem from="1595978852253" duration="9798000" />
+      <workItem from="1595978852253" duration="16438000" />
     </task>
     <servers />
   </component>
@@ -124,6 +128,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="565" y="147" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-1280.0.1280.800/0.0.1920.1080@0.0.1920.1080" timestamp="1595978547639" />
+    <state x="0" y="0" width="824" height="446" key="dock-window-1" timestamp="1596026516751">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="0" y="0" width="824" height="446" key="dock-window-1/0.0.1280.800@0.0.1280.800" timestamp="1596026516751" />
     <state x="667" y="139" width="585" height="801" key="find.popup" timestamp="1595981335821">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
