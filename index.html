@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+    <title>Canvas</title>
+
+    <head>
+        <title>Solar tilt</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="initial-scale=1.0"/>
+        <link rel="stylesheet" href="./style.css" />
+        <script type="text/javascript" src="./canvas.js"> </script>
+        <div class="header">
+            <div>
+                <h1 class="page_title">Solar tilt</h1>
+                <p class="small_font">This is a quick html page that allows you to tilt your solar panels to the perfect angle for best energy production</p>
+            </div>
+        </div>
+    </head>
+
+    <body onload="draw()">
+        <div class="flex container">
+                <div class="big_separation big_font">
+                    <label id="winter_angle">Winter Angle</label>
+                    <label id="summer_angle">Summer Angle</label>
+                </div>
+                <div id="location_data">
+                    <label class="small_font" id="lbl_lat">Current Latitude: </label>
+                    <input type="text" class="small_font" id="txt_lat">
+                    <label class="small_font" id="lbl_long">Current Longitude: </label>
+                    <input type="text" class="small_font" id="txt_long">
+                    <a href="#" id="location_button" onclick="openGoogleMaps()" class="nicebutton small_font">Choose Location</a>
+                </div>
+            <a href="#" id="calculate" onclick="calculateAngle()" class="nicebutton small_font">Choose Location</a>
+
+            <canvas id="canvas" width="530" height="350"></canvas>
+            <label></label>
+        </div>
+    </body>
+</html>
