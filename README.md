@@ -12,3 +12,4 @@ For this little project we used:
 3. CSS styling for every ui aspect
 4. Javascript: All the logic is managed by javascript files.
 
+You can test it [here!](https://caspercba.github.io/solar-panel-tilt/)
